@@ -6,7 +6,7 @@ BUILD_TYPE = 1
 
 #gem2-diag
 ifndef PROJECT_TYPE
-PROJECT_TYPE = sam4e-xp
+PROJECT_TYPE = project_name
 endif 
 
 #cortex-m4.cmake

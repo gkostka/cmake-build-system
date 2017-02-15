@@ -1,12 +1,7 @@
-
+# ------------------------
 cmake_minimum_required(VERSION 2.8)
 
 # ------------------------
-# Application type:
-if(NOT DEFINED PROJECT_TYPE)
-set(PROJECT_TYPE    "sam4e-xp")
-endif()
-
 set(CMAKE_USE_RELATIVE_PATHS 1)
 
 # ------------------------
@@ -30,6 +25,7 @@ if(NOT DEFINED BOARD_REVISION)
 message(FATAL_ERROR "Undefined BOARD_REVISION")
 endif()
 
+add_definitions(-DPROJECT_TYPE="${PROJECT_TYPE}")
 add_definitions(-DBOARD_TYPE=0x${BOARD_TYPE})
 add_definitions(-DBOARD_REVISION=0x${BOARD_REVISION})
 add_definitions(-DSW_VERSION="${SW_VERSION}")
@@ -56,8 +52,10 @@ endif()
 ## -------------------------------------------------------------
 ##                      App config
 ## -------------------------------------------------------------
-if (${PROJECT_TYPE} STREQUAL "sam4e-xp")
-    include(sam4e-xp.cmake)
-else()
-    message( FATAL_ERROR "Unsupported Application: " ${APPLICATION_TYPE} )
-endif()
+add_definitions(-DUSE_FREERTOS=1)
+add_definitions(-DUSE_LWEXT4=0)
+
+include_directories(app)
+
+add_subdirectory(app)
+add_subdirectory(sdk)
