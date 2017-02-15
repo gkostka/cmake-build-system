@@ -4,7 +4,7 @@ set (TARGET_NAME project-name)
 aux_source_directory(. APP_SRC)
 add_executable(${TARGET_NAME} ${APP_SRC})
 
-target_link_libraries(${TARGET_NAME} sdk)
+target_link_libraries(${TARGET_NAME} bsp)
 target_link_libraries(${TARGET_NAME} sdk)
 target_link_libraries(${TARGET_NAME} m)
 
